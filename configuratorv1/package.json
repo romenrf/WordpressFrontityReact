@@ -1,0 +1,28 @@
+{
+  "name": "configuratorv1",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Frontity project",
+  "keywords": [
+    "frontity"
+  ],
+  "engines": {
+    "node": ">=10.0.0",
+    "npm": ">=6.0.0"
+  },
+  "scripts": {
+    "dev": "frontity dev",
+    "build": "frontity build",
+    "serve": "frontity serve"
+  },
+  "prettier": {},
+  "dependencies": {
+    "@frontity/core": "^1.9.1",
+    "@frontity/html2react": "^1.5.0",
+    "@frontity/mars-theme": "./packages/mars-theme",
+    "@frontity/tiny-router": "^1.2.4",
+    "@frontity/wp-source": "^1.10.0",
+    "@material-ui/core": "^4.11.2",
+    "frontity": "^1.13.0"
+  }
+}

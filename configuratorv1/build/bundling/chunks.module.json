@@ -1,0 +1,89 @@
+{
+  "errors": [],
+  "warnings": [],
+  "version": "4.44.2",
+  "hash": "002ab5df9af8aa42b493",
+  "publicPath": "/static/",
+  "outputPath": "C:\\Users\\romen\\OneDrive\\Documentos\\PROYECTOS PERSONALES\\WordpressFrontityReact\\configuratorv1\\build\\static",
+  "assetsByChunkName": {
+    "configuratorv1": [
+      "configuratorv1.module.js",
+      "configuratorv1.52827cf6845919248dca.hot-update.js"
+    ]
+  },
+  "assets": [
+    {
+      "name": "52827cf6845919248dca.hot-update.json",
+      "size": 56,
+      "chunks": [],
+      "chunkNames": [],
+      "info": {
+        "hotModuleReplacement": true,
+        "immutable": true
+      },
+      "emitted": false
+    },
+    {
+      "name": "configuratorv1.52827cf6845919248dca.hot-update.js",
+      "size": 18335,
+      "chunks": [
+        "configuratorv1"
+      ],
+      "chunkNames": [
+        "configuratorv1"
+      ],
+      "info": {
+        "hotModuleReplacement": true,
+        "immutable": true
+      },
+      "emitted": false
+    },
+    {
+      "name": "configuratorv1.module.js",
+      "size": 10583573,
+      "chunks": [
+        "configuratorv1"
+      ],
+      "chunkNames": [
+        "configuratorv1"
+      ],
+      "info": {},
+      "emitted": false
+    }
+  ],
+  "filteredAssets": 0,
+  "entrypoints": {
+    "configuratorv1": {
+      "chunks": [
+        "configuratorv1"
+      ],
+      "assets": [
+        "configuratorv1.module.js",
+        "configuratorv1.52827cf6845919248dca.hot-update.js"
+      ],
+      "children": {},
+      "childAssets": {}
+    }
+  },
+  "namedChunkGroups": {
+    "configuratorv1": {
+      "chunks": [
+        "configuratorv1"
+      ],
+      "assets": [
+        "configuratorv1.module.js",
+        "configuratorv1.52827cf6845919248dca.hot-update.js"
+      ],
+      "children": {},
+      "childAssets": {}
+    }
+  },
+  "logging": {
+    "webpack.buildChunkGraph.visitModules": {
+      "entries": [],
+      "filteredEntries": 2,
+      "debug": false
+    }
+  },
+  "children": []
+}
