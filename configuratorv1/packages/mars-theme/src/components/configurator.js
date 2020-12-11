@@ -3,26 +3,44 @@ import { Global, css, connect, styled, Head } from "frontity";
 
 import { Button } from "@material-ui/core"
 
+import Item from "./list/list-item";
 
+const Configurador = ({state}) => {
+    // Get the data of the current list.
+    const data = state.source.get(state.router.link);
+    const [ sms, setsms] = React.useState("");
 
-const Configurador = (props) => {
+    const handlerImagen = () =>{
+        setsms("Imagen")
+    }
 
-    
- return(   
+    const handlerTexto = () =>{
+        setsms("Texto")
+    }
+
+    return(   
         <CssContainer>
             <CssContainerItem>
                 <CssFirstOption>
-                <Button  size="large" color="default" variant="contained" >Añadir imagen</Button>
-                <Button size="large" color="default" variant="contained">Añadir Texto</Button>
+                <Button  size="large" color="default" variant="contained" onClick={handlerImagen}>Añadir imagen</Button>
+                <Button size="large" color="default" variant="contained" onClick={handlerTexto}>Añadir Texto</Button>
                 </CssFirstOption>
             </CssContainerItem>        
             <CssContainerItem>
                 <CssSecondOption>
-                    <h2>Texto</h2>
+                    <h2>{sms}</h2>
                 </CssSecondOption>
             </CssContainerItem>
+            <CssContainerItem>
+                {/* Iterate over the items of the list. */}
+      {data.items.map(({ type, id }) => {
+        const item = state.source[type][id];
+        // Render one Item component for each one.
+        return <Item key={item.id} item={item} />;
+      })}
+            </CssContainerItem>
         </CssContainer>
-     )
+    )
 };
 
 export default connect(Configurador)
@@ -43,7 +61,7 @@ const CssContainerItem = styled.div`
     border-right: 1px dotted #444;
     background-image: linear-gradient(
         180deg,
-        rgba(255, 255, 255, 0.3),
+        rgba(255, 255, 255, 0.4),
         rgba(255, 255, 255, 0)
       );
 `;
@@ -54,4 +72,10 @@ const CssFirstOption = styled.div`
 
 const CssSecondOption = styled.div`
     width: 100%;        
+`;
+
+const Header = styled.h3`
+  font-weight: 300;
+  text-transform: capitalize;
+  color: rgba(12, 17, 43, 0.9);
 `;

@@ -2,18 +2,18 @@
   "errors": [],
   "warnings": [],
   "version": "4.44.2",
-  "hash": "002ab5df9af8aa42b493",
+  "hash": "1695f4bc9f42cddc7a4d",
   "publicPath": "/static/",
   "outputPath": "C:\\Users\\romen\\OneDrive\\Documentos\\PROYECTOS PERSONALES\\WordpressFrontityReact\\configuratorv1\\build\\static",
   "assetsByChunkName": {
     "configuratorv1": [
       "configuratorv1.module.js",
-      "configuratorv1.52827cf6845919248dca.hot-update.js"
+      "configuratorv1.462914a681b3ff14d951.hot-update.js"
     ]
   },
   "assets": [
     {
-      "name": "52827cf6845919248dca.hot-update.json",
+      "name": "462914a681b3ff14d951.hot-update.json",
       "size": 56,
       "chunks": [],
       "chunkNames": [],
@@ -24,8 +24,8 @@
       "emitted": false
     },
     {
-      "name": "configuratorv1.52827cf6845919248dca.hot-update.js",
-      "size": 18335,
+      "name": "configuratorv1.462914a681b3ff14d951.hot-update.js",
+      "size": 30160,
       "chunks": [
         "configuratorv1"
       ],
@@ -40,7 +40,7 @@
     },
     {
       "name": "configuratorv1.module.js",
-      "size": 10583573,
+      "size": 10633990,
       "chunks": [
         "configuratorv1"
       ],
@@ -59,7 +59,7 @@
       ],
       "assets": [
         "configuratorv1.module.js",
-        "configuratorv1.52827cf6845919248dca.hot-update.js"
+        "configuratorv1.462914a681b3ff14d951.hot-update.js"
       ],
       "children": {},
       "childAssets": {}
@@ -72,7 +72,7 @@
       ],
       "assets": [
         "configuratorv1.module.js",
-        "configuratorv1.52827cf6845919248dca.hot-update.js"
+        "configuratorv1.462914a681b3ff14d951.hot-update.js"
       ],
       "children": {},
       "childAssets": {}
