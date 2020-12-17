@@ -23,7 +23,7 @@ const settings = {
             ],
             [
               "Salir",
-              "/exitconfig"
+              "/exit"
             ]            
           ],
           "featured": {

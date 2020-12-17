@@ -8,8 +8,8 @@ import Loading from "./loading";
 import Title from "./title";
 import PageError from "./page-error";
 
-import Configurador from "./configurator"
-
+import Configurador from "./configurator/index"
+import Inicio from "./inicio"
 /**
  * Theme is the root React component of our theme. The one we will export
  * in roots.
@@ -17,39 +17,52 @@ import Configurador from "./configurator"
 const Theme = ({ state }) => {
   // Get information about the current URL.
   const data = state.source.get(state.router.link);
+  const [jumping,setJumping] = React.useState(false)
+
+  console.log("State en Theme",state)
+
+  if ((data.route === "/exit/")&&(!jumping)){
+    setJumping(true)
+    console.log("Salir")
+    window.location.replace("http://www.gofioteam.com")
+  }
+
+  const renderSwitchModules = (param)=>{    
+    switch(param.route){
+      case "/": return <Inicio />
+      case "/configurator/": return <Configurador state={state} />
+    }
+  }
 
   return (
-    <>
-      {/* Add some metatags to the <head> of the HTML. */}
-      <Title />
-      <Head>
+     (!jumping)
+      ?<>      
+        {/* Add some metatags to the <head> of the HTML. */}
+        <Title />
+        <Head>
         <meta name="description" content={state.frontity.description} />
         <html lang="en" />
-      </Head>
-
-      {/* Add some global styles for the whole site, like body or a's. 
-      Not classes here because we use CSS-in-JS. Only global HTML tags. */}
-      <Global styles={globalStyles} />
-
-      {/* Add the header of the site. */}
-      <HeadContainer>
+        </Head>
+      
+        {/* Add some global styles for the whole site, like body or a's. 
+        Not classes here because we use CSS-in-JS. Only global HTML tags. */}
+        <Global styles={globalStyles} />
+    
+        {/* Add the header of the site. */}
+        <HeadContainer>
         <Header />
-      </HeadContainer>
+        </HeadContainer>
 
-      {/* Add the main section. It renders a different component depending
-      on the type of URL we are in. */}            
-        <Switch>
-          <Loading when={data.isFetching} />
-          <Configurador when={data.isArchive} />
-          <PageError when={data.isError} />
-        </Switch>      
-    </>
-  );
-};
-
-export default connect(Theme);
-
-const globalStyles = css`
+         {renderSwitchModules(data)}          
+                
+      </>    
+    :<h3> Estas siendo redirigido al carrito de la compra...</h3>
+    )
+  };
+  
+  export default connect(Theme);
+  
+  const globalStyles = css`
   body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,

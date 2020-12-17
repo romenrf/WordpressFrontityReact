@@ -3,7 +3,10 @@ import { Global, css, connect, styled, Head } from "frontity";
 
 import { Button } from "@material-ui/core"
 
-import Item from "./list/list-item";
+import Item from "../list/list-item";
+import {BackgroundConfigurator} from './background'
+
+//import WooCommerce from "../services/wcservices"
 
 const Configurador = ({state}) => {
     // Get the data of the current list.
@@ -18,12 +21,19 @@ const Configurador = ({state}) => {
         setsms("Texto")
     }
 
+    /*WooCommerce.getAsync('products').then(function(result) {
+        return JSON.parse(result.toJSON().body);
+      });*/
+        
+
     return(   
         <CssContainer>
             <CssContainerItem>
                 <CssFirstOption>
                 <Button  size="large" color="default" variant="contained" onClick={handlerImagen}>Añadir imagen</Button>
+                <br/><br/>
                 <Button size="large" color="default" variant="contained" onClick={handlerTexto}>Añadir Texto</Button>
+                
                 </CssFirstOption>
             </CssContainerItem>        
             <CssContainerItem>
@@ -32,12 +42,16 @@ const Configurador = ({state}) => {
                 </CssSecondOption>
             </CssContainerItem>
             <CssContainerItem>
-                {/* Iterate over the items of the list. */}
-      {data.items.map(({ type, id }) => {
-        const item = state.source[type][id];
-        // Render one Item component for each one.
-        return <Item key={item.id} item={item} />;
-      })}
+                <BackgroundConfigurator type="camisa"/>
+                <Button size="large" color="primary" variant="contained" onClick={handlerTexto}>Añadir Al Carrito</Button>
+            {/* Iterate over the items of the list. 
+            {data.items.map(({ type, id }) => {
+            const item = state.source[type][id];
+            // Render one Item component for each one.
+            return <Item key={item.id} item={item} />;
+            })}
+            */}
+
             </CssContainerItem>
         </CssContainer>
     )
