@@ -1,30 +1,80 @@
 import React from 'react'
-import { Global, css, connect, styled, Head } from "frontity";
+import { connect, styled } from "frontity";
 
-import { Button } from "@material-ui/core"
+import { Button, TextField } from "@material-ui/core"
 
-import Item from "../list/list-item";
-import {BackgroundConfigurator} from './background'
+import { BackgroundConfigurator } from './background'
 
-//import WooCommerce from "../services/wcservices"
+import { Rnd } from 'react-rnd'
+
+import { Spring } from "react-spring";
+
+import RotateLeftIcon from '@material-ui/icons/RotateLeft';
+import RotateRightIcon from '@material-ui/icons/RotateRight';
+import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined';
+import ZoomInOutlinedIcon from '@material-ui/icons/ZoomInOutlined';
+import ZoomOutOutlinedIcon from '@material-ui/icons/ZoomOutOutlined';
+
+//import Portal from './functions'
 
 const Configurador = ({state}) => {
     // Get the data of the current list.
     const data = state.source.get(state.router.link);
     const [ sms, setsms] = React.useState("");
-
+    const [ textocontainer, settextocontainer] = React.useState("VAYA POCA BROMA");
+    const [ rotateAngle, setrotateAngle] = React.useState(0)
+    const [ sizeItem, setsizeitem] = React.useState(2)
+    const [ divnumber , setdivnumber ] = React.useState(0)
+    
+    
     const handlerImagen = () =>{
         setsms("Imagen")
     }
 
-    const handlerTexto = () =>{
-        setsms("Texto")
+    const style = {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        border: "solid 1px #ddd",
+        //background: "#f0f0f0"
+      };
+    
+    const containerGeneral={        
+        background:"#222"
     }
 
-    /*WooCommerce.getAsync('products').then(function(result) {
-        return JSON.parse(result.toJSON().body);
-      });*/
-        
+    const containerItem={
+        background:"#ccc"
+    }
+
+    const CssTransform={
+        transform: "rotate("+rotateAngle+"deg) scale("+sizeItem+")",
+    }
+
+    const handleAddDegree = ()=>{
+        setrotateAngle( rotateAngle => rotateAngle = (rotateAngle + 90))
+    }
+
+    const handleSubDegree = ()=>{
+        setrotateAngle( rotateAngle => rotateAngle = (rotateAngle - 90))
+    }
+
+    const handleAddSize = ()=>{        
+        setsizeitem( sizeItem => sizeItem = (sizeItem + 0.1) )
+    }
+
+    const handleSubSize = ()=>{
+        setsizeitem(sizeItem => sizeItem = (sizeItem - 0.1) )
+    }
+
+    const handlerTexto = () =>{
+        setsms("Texto")
+        var reactNode = React.createElement('div')
+        element.textContent = 'Hello word';
+        ReactDOM.render(reactNode, document.getElementById('root'))
+        alert("creado")
+    } 
+    
 
     return(   
         <CssContainer>
@@ -38,24 +88,49 @@ const Configurador = ({state}) => {
             </CssContainerItem>        
             <CssContainerItem>
                 <CssSecondOption>
-                    <h2>{sms}</h2>
+                    <TextField 
+                        id="textcontainer" 
+                        label="Texto" 
+                        variant="outlined" 
+                        value={textocontainer} 
+                        //onChange={}                        
+                        helperText="Por favor introduce el texto"
+                        />  
+                        < br/><br/>
+                        <RotateLeftIcon fontSize="large" onClick={handleAddDegree}/>
+                        <RotateRightIcon fontSize="large" onClick={handleSubDegree}/>
+                        <ZoomInOutlinedIcon fontSize="large" onClick={handleAddSize} />
+                        <ZoomOutOutlinedIcon fontSize="large" onClick={handleSubSize} />
+                        <DeleteForeverOutlinedIcon fontSize="large" />
+                        <Button size="large" color="primary" variant="contained" onClick={handlerTexto}>Añadir Al Carrito</Button>
                 </CssSecondOption>
             </CssContainerItem>
             <CssContainerItem>
-                <BackgroundConfigurator type="camisa"/>
-                <Button size="large" color="primary" variant="contained" onClick={handlerTexto}>Añadir Al Carrito</Button>
-            {/* Iterate over the items of the list. 
-            {data.items.map(({ type, id }) => {
-            const item = state.source[type][id];
-            // Render one Item component for each one.
-            return <Item key={item.id} item={item} />;
-            })}
-            */}
+                    <div id="containerGeneral" style={containerGeneral}>                    
 
+                        <Rnd
+                        style={style}
+                        default={{
+                        x: 0,
+                        y: 0,
+                        width: 320,
+                        height: 200
+                        }}
+                        >
+                            <div style={CssTransform}>{textocontainer}</div>
+                        </Rnd>
+                        <div id="containerElementos">
+
+                        </div>
+                        <BackgroundConfigurator class type="camisa"/>                                        
+                    </div>
             </CssContainerItem>
         </CssContainer>
     )
 };
+
+
+                        
 
 export default connect(Configurador)
 
@@ -93,3 +168,5 @@ const Header = styled.h3`
   text-transform: capitalize;
   color: rgba(12, 17, 43, 0.9);
 `;
+
+

@@ -23,8 +23,13 @@
     "@frontity/tiny-router": "^1.2.4",
     "@frontity/wp-source": "^1.10.0",
     "@material-ui/core": "^4.11.2",
+    "@material-ui/icons": "^4.11.2",
     "@woocommerce/woocommerce-rest-api": "^1.0.1",
     "frontity": "^1.13.0",
+    "react-resizable-rotatable-draggable": "^0.2.0",
+    "react-rnd": "^10.2.4",
+    "react-spring": "^8.0.27",
+    "styled-components": "^5.2.1",
     "woocommerce-api": "^1.5.0"
   }
 }

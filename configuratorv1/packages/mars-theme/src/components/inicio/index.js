@@ -31,9 +31,9 @@ export const Inicio = () =>{
     }
 
     const apiWc = new WooCommerceRestApi({
-        url: "http://www.gofioteam.com",
-        consumerKey: "ck_574cfebc41f29847e774d99976813406bf70112f",
-        consumerSecret: "cs_aea33756b263cb58b7ee94d5dae2004cbfc9802b",
+        url: "http://desa3.ilos.es",
+        consumerKey: "ck_ba92dde2c3372b364cdfdd1b3f997d93b2bd3098",
+        consumerSecret: "cs_ca0aba47c3da220e1aea7aaa09bf5334dc92e953",
         version: "wc/v3"
     })   
 

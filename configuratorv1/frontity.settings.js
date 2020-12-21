@@ -2,9 +2,9 @@ const settings = {
   "name": "configuratorv1",
   "state": {
     "frontity": {
-      "url": "http://www.gofioteam.com",
-      "title": "Configurador GOFIOTEAM",
-      "description": "GOFIOTEAM-Lab WordPress for Frontity development"
+      "url": "http://desa3.ilos.es/",
+      "title": "Configurador",
+      "description": "Módulo configurador para RóTULOS CARACTER"
     }
   },
   "packages": [

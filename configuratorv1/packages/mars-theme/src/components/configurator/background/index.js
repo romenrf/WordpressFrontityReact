@@ -1,5 +1,3 @@
-import React from 'react'
-
 import Back_tshirt from './t-shirt.png'
 
 export const BackgroundConfigurator = (props)=>{
