@@ -1,6 +1,7 @@
 import React from 'react'
 import WooCommerceRestApi from '@woocommerce/woocommerce-rest-api'
 
+import {Button} from '@material-ui/core'
 
 const apiWc = new WooCommerceRestApi({
     url: "http://desa3.ilos.es",
@@ -12,10 +13,10 @@ const apiWc = new WooCommerceRestApi({
 
 
 export const ConectarCatalogo = () =>{
-
+            
     const [catalogo, setCatalogo ] = React.useState([])
     
-    React.useEffect(()=>{
+    React.useEffect(()=>{           
         apiWc.get("products")
         .then( (response) =>{
             console.log("Response Status:", response.status);
@@ -28,8 +29,9 @@ export const ConectarCatalogo = () =>{
     },[])
 
     return(
-        (catalogo.filter(x=> x.purchasable===true).length === 0)
-        ?<h3>...cargando productos</h3>
-        :<h3>Hay {(catalogo.filter(x=> x.purchasable===true).length > 1)?catalogo.filter(x=> x.purchasable===true).length + " productos disponibles":"1 producto disponible"}</h3>   
+
+           (catalogo.filter(x=> x.purchasable===true).length === 0)
+            ?<h3>...cargando productos</h3>
+            :<h3>Hay {(catalogo.filter(x=> x.purchasable===true).length > 1)?catalogo.filter(x=> x.purchasable===true).length + " productos disponibles":"1 producto disponible"}</h3>   
     )
 }

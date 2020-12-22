@@ -11,7 +11,11 @@ import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined'
 import ZoomInOutlinedIcon from '@material-ui/icons/ZoomInOutlined'
 import ZoomOutOutlinedIcon from '@material-ui/icons/ZoomOutOutlined'
 
+import {Rnd} from 'react-rnd'
+
 import '../../../App.css'
+
+import Logoconfigurador from '../logos'
 
 //CREACION DEL ELEMENTO
 
@@ -21,39 +25,62 @@ const ConfigItemElement = (props) =>{
             tipo,         
         } = props;
 
-    const [itemData, setItemData ] =React.useState({id:id,rotatevalue:0,sizevalue:0})
+    const [itemData, setItemData ] =React.useState({rotatevalue:0,sizevalue:1})
 
-    const [ texto, settexto ] = React.useState("")
+    const handleAddDegree = (event,id)=>{
+      console.log("evento",event)   
+      console.log("id",id)   
 
-    const handleAddDegree = (id)=>{
-        console.log(itemData)
+      let temp_item = itemData
+      temp_item.rotatevalue = temp_item.rotatevalue - 90
+
+      let ident  = "textcontainer"+id +"draw"   
+      document.getElementById(ident).style.transform = "rotate("+temp_item.rotatevalue+"deg) scale("+temp_item.sizevalue+")"
+      
+      setItemData( temp_item)
+    }
+    
+    const handleSubDegree = (event,id)=>{
         let temp_item = itemData
         temp_item.rotatevalue = temp_item.rotatevalue + 90
+
+        let ident  = "textcontainer"+id +"draw"        
+        document.getElementById(ident).style.transform = "rotate("+temp_item.rotatevalue+"deg) scale("+temp_item.sizevalue+")"
+              
         setItemData( temp_item)
     }
     
-    const handleSubDegree = (id)=>{
-        console.log(itemData)
-        let temp_item = itemData
-        temp_item.rotatevalue = temp_item.rotatevalue - 90
-        setItemData( temp_item)
-    }
-    
-    const handleAddSize = (id)=>{        
-        console.log(itemData)
+    const handleAddSize = (event,id)=>{        
         let temp_item = itemData
         temp_item.sizevalue = temp_item.sizevalue + 0.1
+      
+        let ident  = "textcontainer"+id +"draw"      
+        document.getElementById(ident).style.transform = "rotate("+temp_item.rotatevalue+"deg) scale("+temp_item.sizevalue+")"
+        
         setItemData( temp_item)
     }
     
-    const handleSubSize = (id)=>{
-        console.log(itemData)
+    const handleSubSize = (event,id)=>{
         let temp_item = itemData
         temp_item.sizevalue = temp_item.sizevalue - 0.1
+      
+        let ident  = "textcontainer"+id +"draw"       
+        document.getElementById(ident).style.transform = "rotate("+temp_item.rotatevalue+"deg) scale("+temp_item.sizevalue+")"
+        
         setItemData( temp_item)
     }
 
     const { removeItem } = useConfiguratorItems();
+
+    const handleChageText = (event) =>{  
+
+        let ident  = event.target.id +"draw"        
+        document.getElementById(ident).innerHTML = event.target.value
+
+        let temItem = itemData
+        temItem.texto = event.target.value
+        setItemData(temItem)      
+    }
 
     return(
         <div className="containerItemOptions">            
@@ -62,17 +89,18 @@ const ConfigItemElement = (props) =>{
                     id={"textcontainer"+id}
                     label={"Texto "+ id}
                     variant="outlined" 
-                    defaultValue={texto} 
-                    onChange={(event)=>settexto(event.target.value)} 
+                    defaultValue={itemData.texto} 
+                    onChange={(event)=>handleChageText(event,id)} 
                     helperText="Por favor introduce el texto"
                 />  
                 :<Button variant="outlined">Seleccionar fichero desde PC</Button>
             }
-            <RotateLeftIcon color="primary" fontSize="medium" onClick={()=>handleAddDegree(id)}/>
-            <RotateRightIcon color="primary" fontSize="medium" onClick={()=>handleSubDegree(id)}/>
-            <ZoomInOutlinedIcon color="primary" fontSize="medium" onClick={()=>handleAddSize(id)} />
-            <ZoomOutOutlinedIcon color="primary" fontSize="medium" onClick={()=>handleSubSize(id)} />
-            <DeleteForeverOutlinedIcon color="primary" fontSize="medium" onClick={()=>removeItem(id)}/>  
+            <br/>
+            <Button size="small" onClick={(event)=>handleAddDegree(event,id)}><RotateLeftIcon color="primary" /></Button>
+            <Button size="small" onClick={(event)=>handleSubDegree(event,id)}><RotateRightIcon color="primary" /></Button>
+            <Button size="small" onClick={(event)=>handleAddSize(event,id)}><ZoomInOutlinedIcon color="primary" /></Button>
+            <Button size="small" onClick={(event)=>handleSubSize(event,id)}><ZoomOutOutlinedIcon color="primary" /></Button>
+            <Button size="small" onClick={()=>removeItem(id)}><DeleteForeverOutlinedIcon color="secondary" /></Button>
         </div>
     )
 }
@@ -90,7 +118,7 @@ const ConfigurationItemContainer = (props) =>{
       enter: { right: "0%"},
       leave: {right: "-100%"}
     })
-    console.log(document.getElementById("configlistitem"))
+    //console.log(document.getElementById("configlistitem"))
 
     return( 
         (document.getElementById("configlistitem")) ?
@@ -102,8 +130,57 @@ const ConfigurationItemContainer = (props) =>{
           ))
         }
         </div>, document.getElementById("configlistitem"))
-        :<></>
+        :<></>                
+    );
         
+}
+
+const ConfigurationItemDraw = (props) =>{  
+
+    const { itemData } = props
+
+    const styleRND = {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        border: "solid 1px #ddd",
+        //background: "#f0f0f0"
+    };
+    const [rotatevalue ,setRotate] = React.useState(0);
+    const sizevalue = 1;
+    
+    const CssTransform={
+        transform: "rotate("+rotatevalue+"deg) scale("+sizevalue+")",
+    }
+
+    const transitions = useTransition( itemData , itemData => itemData.id, {
+      from: { right: "-100%"},
+      enter: { right: "0%"},
+      leave: {right: "-100%"}
+    })
+
+    return( 
+        (document.getElementById("containerGeneral")) ?
+        createPortal(
+        <>
+        {
+          transitions.map(({ item,key}) => (  
+                <Rnd key={key} style={styleRND} default={{x: 100, y: 100,width: 220,height: 100}}>
+                  {
+                    (item.content.tipo=== "texto")
+                    ?<div key={key} id={"textcontainer"+item.id+"draw"} style={CssTransform}>{item.content.texto}
+                    </div>
+                    :<></>
+                  }{
+                    (item.content.tipo=== "imagen")
+                    ?<div key={key} id={"textcontainer"+item.id+"draw"} style={CssTransform}><Logoconfigurador /></div>
+                    :<></>
+                  }
+                </Rnd>          
+          ))
+        }
+        </>, document.getElementById("containerGeneral"))
+        :<></>                
     );
         
 }
@@ -145,6 +222,7 @@ const ConfiguratorItemsProvider = (props) => {
       }}
       >
         <ConfigurationItemContainer itemData={items} />
+        <ConfigurationItemDraw itemData={items} />
         {children}
       </ConfiguratorItemsContext.Provider>    
     )

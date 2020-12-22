@@ -9,10 +9,12 @@ function App() {
 
   return (
     <div className="App">
+
       <header className="App-header">
-        <ConectarCatalogo />
+        <ConectarCatalogo />        
       </header>
-      <main className="App-header">
+      
+      <main className="App-main">
         <ConfiguratorItemsProvider >                                                       
           <Configurador />
         </ConfiguratorItemsProvider>
@@ -20,8 +22,7 @@ function App() {
 
       <footer className="footer">
         <div>2020 Rótulos Caracter @ Todos los derechos reservados. V0.0.2 Configurador </div>
-      </footer>
-      
+      </footer>      
     </div>
   );
 }

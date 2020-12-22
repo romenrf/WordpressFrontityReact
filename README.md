@@ -4,7 +4,7 @@ Wordpress + ReactJs
 ## V 0.0.4
     Creamos nuevo proyecto sin Frontity
     instalamos api woocommerce, material-ui, react-rnd
-    
+    Configurador funciona falta importar una imagen
 ## V 0.0.3
     -Apuntamos al nuevo Wordpress / WC
     -Instalamos paquete react-rnd

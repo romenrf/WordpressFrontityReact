@@ -1,11 +1,8 @@
 import React  from 'react'
 
-import { Button, TextField } from "@material-ui/core"
+import {Button} from "@material-ui/core"
 
 import { BackgroundConfigurator } from './background'
-
-import {Rnd} from 'react-rnd'
-
 
 //import { Spring } from "react-spring";
 
@@ -21,34 +18,13 @@ export function Configurador(props){
     const { addnewItem } = useConfiguratorItems();
 
     //const [ textocontainer, settextocontainer] = React.useState("VAYA POCA BROMA");
-    const [ itemdata, setitemdata] = React.useState([{id:0,rotatevalue:0,sizevalue:0}])
-    
-    const styleRND = {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        border: "solid 1px #ddd",
-        //background: "#f0f0f0"
-    };
-    
-    const CssTransform={
-        transform: "rotate("+itemdata[0].rotatevalue+"deg) scale("+itemdata[0].sizevalue+")",
-    }
+    const [ itemdata, setitemdata] = React.useState([{id:0,rotatevalue:0,sizevalue:0}])    
         
     
     const handlerImagen = () =>{
         addnewItem({texto:"Prueba",tipo:"imagen"})
     }
     const handlerTexto = () =>{
-
-        /*var nuevoElemento = <Rnd style={styleRND} default={{x: 0, y: 0,width: 320,height: 200}}>
-                                <div style={CssTransform}>{textocontainer}</div>
-                            </Rnd>
-
-        var reactNode = React.createElement('div',{},nuevoElemento);        
-
-        ReactDOM.render(reactNode, document.getElementById('containerItems'))*/        
-
         addnewItem({texto:"Prueba",tipo:"texto"})
     } 
 
@@ -66,8 +42,7 @@ export function Configurador(props){
             <div className="CssContainerItem">
                 <div className="CssSecondOption">
                     <form className="form" noValidate autoComplete="off">                                             
-                        <div id="configlistitem" />
-       
+                        <div id="configlistitem" />       
                     </form>
                 </div>
             </div>
